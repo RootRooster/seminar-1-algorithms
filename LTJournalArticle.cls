@@ -167,6 +167,7 @@
 	backend=biber, % Use the biber backend for compiling the bibliography
 	citestyle=numeric, % In-text citation style
 	bibstyle=numeric, % Bibliography style
+	style=ieee,
 	sorting=none, % Order references in the order in which they are used in the document
 ]{biblatex}
 
