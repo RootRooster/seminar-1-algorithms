@@ -1,1 +1,62 @@
-Hi, I'm paper 2!
+\subsection{Abstract}
+The paper describes a significant improvement of a \textit{randomized} (Monte-Carlo) algorithm for computing the 3-edge-connected components of a digraph
+with $m$ edges in polylogarithmic time $\widetilde{O} (m^{3/2})$. The algorithm described bests the previous one by being deterministic and 
+computable in linear time. 
+
+\vspace*{0.5cm}
+
+\subsection{Preliminaries and primary problem}
+This algorithm solves the problem of finding \textbf{3-edge-connected components in directed graphs}, for preliminaries; Let $G = (V,E)$
+be a strongly connected directed graph with $|V(G)| =n$ and  $|E(G)| =m$. Generally a set of edges $C \subseteq E$ is a \textbf{cut} if $G \setminus C$ is not
+strongly connected i.e. there does not exist a directed path between every pair of vertices, if $|C| =k$ we refer to $C$ as a \textbf{$k$-sized cut} of $G$.
+Hence a digraph $G$ is $k$-edge-connected if it has no $(k-1)$ cuts. 
+
+\vspace*{0.2cm}
+
+We say that two vertices $v$ and $w$ are $k$-edge-connected, and we denote this relation by $v \leftrightarrow_k w$, if there are $k$-edge-disjoint 
+directed paths from $v$ to $w$ and $k$-edge-disjoint directed paths from $w$ to $v$.
+We define a \textbf{$k$-edge-connected component} of a digraph $G$ as a maximal subset $U \subseteq V(G)$ such that $u \leftrightarrow_k v, \forall u,v \in U$.
+
+\subsection{How they achieved this improvement}
+The authors derive and prove that instead of a randomized polylogarithmic algorithm, a deterministic linear one exists. Their method relies on a substructure
+of digraphs, known as \textbf{$2$-connectivity-light graph} (denoted 2CLG). This is because the decomposition of digraphs into a collection of 2CLGs exists
+in linear time, and it maintains the $3$-edge-connected components of the original graph. Besides 2CLGs they rely on the definition of minimal
+$2$-in and -out sets, which contain vertices with out- or in-degree of 2. Formally, we define both here.
+
+\begin{definition}
+    A \textbf{$2$-connectivity-light} graph $G$ is a strongly connected digraph that contains two types of vertices; \textbf{ordinary} and \textbf{auxiliary},
+    that satisfy the following conditions:
+    \begin{enumerate}
+        \item Any two ordinary vertices are $2$-edge-connected,
+        \item each auxiliary vertex has an in- or out-degree of 1,
+        \item for every vertex $u$ with out-degree $>1$ and every vertex $v$ with in-degree $>1$, there are 2 edge-disjoint paths from $u$ to $v$,
+        \item for each auxiliary vertex $v$ with out-degree (resp. in-degree) of one, all paths from $v$ to any vertex in $G$ (resp. from any vertex in $G$ to $v$),
+        we have exactly one common edge, the unique out-edge (resp. in-edge).
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}
+    For a strongly connected digraph $G$ we arbitrarily choose a start vertex $s$. For any vertex $v \neq s$ we define $M(v)$ as a \textbf{minimal $2$-in set} that contains $v$, i.e. a minimal set of vertices which contains $v$, does
+    not contains $s$, and has two incoming edges from $V(G) \setminus M(v)$, we denote by $M_R(v)$ the analogous sets in $G^R$, which is the reverse graph of 
+    $G$, i.e., the graph obtained from $G$ after reversing the orientation of its edges.
+\end{definition}
+
+The technique is then based on the following proposition and theorem.
+
+\renewcommand{\theproposition}{I.3} 
+\begin{proposition}
+    Let $G$ be a 2GLC with a fixed ordinary start vertex $s$. Then for any two ordinary vertices $u$ and $v$, we have $v \leftrightarrow_k u$
+    if and only if $M(u) = M(v)$ and $M_R(u) = M_R(v)$.
+\end{proposition}
+\renewcommand{\theproposition}{\arabic{proposition}}
+
+\renewcommand{\thetheorem}{II.5} 
+\begin{theorem}
+    Let $G$ be a strongly connected digraph. In linear time, we can construct a collection $H_1, ..., H_t$ of 2CLG graphs, such that:
+    \begin{itemize}
+        \item For every vertex of $G$ there is exactly one graph among $H_1,..., H_t$, that contains it as an ordinary vertex.
+        \item Every two vertices $u$ and $v$ of $G$ are $3$-edge-connected if and only if there is an $i \in \{1, ...,t\}$ such that $u$ and $v$
+        are 3-edge-connected.
+    \end{itemize}
+\end{theorem}
+\renewcommand{\thetheorem}{\arabic{theorem}}
