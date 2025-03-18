@@ -18,10 +18,9 @@ directed paths from $v$ to $w$ and $k$-edge-disjoint directed paths from $w$ to 
 We define a \textbf{$k$-edge-connected component} of a digraph $G$ as a maximal subset $U \subseteq V(G)$ such that $u \leftrightarrow_k v, \forall u,v \in U$.
 
 \subsection{How they achieved this improvement}
-The authors derive and prove that instead of a randomized polylogarithmic algorithm, a deterministic linear one exists. Their method relies on a substructure
-of digraphs, known as \textbf{$2$-connectivity-light graph} (denoted 2CLG). This is because the decomposition of digraphs into a collection of 2CLGs exists
-in linear time, and it maintains the $3$-edge-connected components of the original graph. Besides 2CLGs they rely on the definition of minimal
-$2$-in and -out sets, which contain vertices with out- or in-degree of 2. Formally, we define both here.
+The new method relies on a substructure of digraphs, known as \textbf{$2$-connectivity-light graph} (denoted 2CLG). This is because the decomposition of digraphs 
+into a collection of 2CLGs exists in linear time, and maintains the $3$-edge-connected components of the original graph. They also define the minimal $2$-in 
+and -out sets, which contain vertices with out- or in-degree of 2. Formally, we define both here.
 
 \begin{definition}
     A \textbf{$2$-connectivity-light} graph $G$ is a strongly connected digraph that contains two types of vertices; \textbf{ordinary} and \textbf{auxiliary},
@@ -38,7 +37,7 @@ $2$-in and -out sets, which contain vertices with out- or in-degree of 2. Formal
 \begin{definition}
     For a strongly connected digraph $G$ we arbitrarily choose a start vertex $s$. For any vertex $v \neq s$ we define $M(v)$ as a \textbf{minimal $2$-in set} that contains $v$, i.e. a minimal set of vertices which contains $v$, does
     not contains $s$, and has two incoming edges from $V(G) \setminus M(v)$, we denote by $M_R(v)$ the analogous sets in $G^R$, which is the reverse graph of 
-    $G$, i.e., the graph obtained from $G$ after reversing the orientation of its edges.
+    $G$.
 \end{definition}
 
 The technique is then based on the following proposition and theorem.
