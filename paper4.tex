@@ -1,2 +1,15 @@
-%predlagam da je to članek skupine paper1 na discordu
-Hi, I'm paper 4!
+\subsection(Lempel–Ziv (LZ77) Factorization in Sublinear Time) 
+Lempel–Ziv (LZ77) factorization is a string processing technique and the main component of most data compression algorithms, such as ZIP, PDF, and PNG. It separates a given string greedily from left to right into phrases \break \( T = f_1 f_2 \cdots f_z \), so that each phrase is either the first occurrence of a character or the longest prefix of the remaining suffix that has already appeared earlier in the text. Each phrase is encoded either as a that same character or as a pair \((l, i)\), where \(l\) is the length of the phrase and \(i\) is the position of its earlier occurrence. For example, for the string \( T = b \cdot b \cdot a \cdot ba \cdot aba \cdot bababa \cdot ababa \), the LZ77 representation is \((0, b), (1,1), (0, a), (2,2), (3,3), (6, 7), (5, 10)\).
+
+In the RAM model, the theoretical lower bound for LZ77 factorization is \( O(n / \log_{\sigma} n) \), which matches the maximum number of phrases. Despite this, no algorithm achieved this optimal bound until recently.
+Earlier algorithms were based on suffix trees or suffix arrays, achieving \( O(n \log \sigma) \) time and \( O(n) \) space. Later improvements reduced space usage to the optimal \( O(n / \log_{\sigma} n) \), but the algorithm still required \(\Omega (n)\) time in the worst case.
+
+Kempa and Kociumaka introduced the first sublinear-time algorithm for LZ77 factorization, running in \( O(n / \sqrt{\log n}) \) time for binary alphabets and \break \( O((n \log \sigma) / \sqrt{\log n}) \) time for larger alphabets, while using optimal \( O(n / \log_{\sigma} n) \) space. They developed a novel index structure that can be built in sublinear time and efficiently finds the leftmost previous occurrence of a substring. This index makes the computation of the Longest Previous Factor (LPF) for each position in the string fast and answers substring occurrence queries in \( O(\log^{\varepsilon} n) \) time.
+
+Instead of relying on the classical method based on Range Minimum Queries (RMQ) over the suffix array—which is too slow for sublinear-time construction—they use a sampling-based approach. The idea is that instead of looking through all the text positions they select a small, representative sample (S) of positions in non-periodic regions (size \(O(n / \log_{\sigma} n)\)). The rule is that if two substrings are equal their starting positions are either both included or both excluded from S.
+
+To check if a substring has appeared before, the problem is turned into a special kind of Range Minimum Query (RMQ). Prefix RMQ finds the smallest value in a range, but only if the prefix matches a given pattern. The authors create a fast and memory-efficient data structure to perform these prefix RMQ queries.
+
+For periodic regions, the algorithm uses two different approaches. If the pattern is only partially periodic, it uses sorted runs and special range queries (3-sided RMQ) to handle them. If the pattern is fully periodic, the algorithm marks the starting positions with a bitvector (a sequence of 0 and 1, where 1 defines the starting postions of the pattern). It then uses fast rank/select queries on this bitvector to quickly find the relevant patterns.
+
+So by using this sampling-based approach with prefix RMQ structure, the authors achive an index that maintains optimal \( O(n / \log_{\sigma} n) \) space complexity, sublinear preprocessing time, and efficient query performance.
