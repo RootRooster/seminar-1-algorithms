@@ -11,12 +11,4 @@ To check if a substring has appeared before, the problem is turned into a specia
 
 For periodic regions, the algorithm uses two different approaches. If the pattern is only partially periodic, it uses sorted runs and special range queries (3-sided RMQ) to handle them. If the pattern is fully periodic, the algorithm marks the starting positions with a bitvector (a sequence of 0 and 1, where 1 defines the starting postions of the pattern). It then uses fast rank/select queries on this bitvector to quickly find the relevant patterns.
 
-So by using this sampling-based approach with prefix RMQ structure, the authors achieve an index that maintains optimal \( O(n / \log_{\sigma} n) \) space complexity, sublinear preprocessing time, and efficient query performance.
-
-\begin{thebibliography}{99}
-  \bibitem{kempa2024}
-  Dominik Kempa and Tomasz Kociumaka,
-  \textit{Lempel-Ziv (LZ77) Factorization in Sublinear Time},
-  2024 IEEE 65th Annual Symposium on Foundations of Computer Science (FOCS),
-  pp. 2045--2055, 2024, doi: \href{https://doi.org/10.1109/FOCS61266.2024.00122}{10.1109/FOCS61266.2024.00122}.
-\end{thebibliography}
+So by using this sampling-based approach with prefix RMQ structure, the authors achieve an index that maintains optimal \( O(n / \log_{\sigma} n) \) space complexity, sublinear preprocessing time, and efficient query performance \cite{10756041}.
