@@ -1,2 +1,28 @@
-%predlagam da je to članek skupine paper3 na discordu
-Hi, I'm paper 6!
+
+The paper \textit{Minor Containment and Disjoint Paths in Almost-Linear Time} by Tuukka Korhonen, Michał Pilipczuk, and Giannos Stamoulis introduces an advanced algorithm that determines whether a graph $H$ is a minor of another graph $G$ in 
+$\mathcal{O}_H(n^{1+o(1)})$ time, where $n$ represents the number of vertices in $G$. This algorithm is a further development on the work previously done by o Kawarabayashi, Kobayashi, and Reed which had complexity quadratic relative to the number $n$ of vertices of graph $G$.
+
+\subsection{Minor containment problem}
+In graph theory, a graph $H$ is considered a minor of a graph 
+$G$ if $H$ can be derived from $G$ through a series of vertex deletions, edge deletions, and edge contractions. The ability to test for minor containment efficiently is crucial, as it underpins the recognition of minor-closed graph classes—collections of graphs where any minor of a member graph is also included in the class. The Graph Minor Theorem (Robertson–Seymour) asserts that such classes can be characterized by a finite set of forbidden minors, making efficient minor testing algorithms highly valuable.
+\\
+
+Beyond unrooted minor containment, the authors also address the rooted version of the problem. Here, $G$ is provided with a set of roots $X\subseteq V(G)$, and certain branch sets of the desired minor model of
+$H$ must include specified subsets of $X$. The proposed algorithm solves this in $\mathcal{O}_{H,|X|}(m^{1+o(1)})$ time, where $m$ denotes the total number of vertices and edges in $G$. This encompasses the Disjoint Paths problem, a classic challenge in graph algorithms that seeks paths between specified pairs of terminals without shared vertices or edges. The new algorithm achieves this in $\mathcal{O}_k(m^{1+o(1)})$ time, with $k$ being the number of terminal pairs. 
+
+\subsection{Main Contributions}
+The efficiency of the proposed algorithm of the authors comes from two primary components:
+
+\begin{itemize}
+    \item 
+    Implementation of the Irrelevant Vertex Technique: Utilizing the \textit{dynamic treewidth} data structure developed by Korhonen et al., the algorithm applies the irrelevant vertex technique of Robertson and Seymour in almost-linear time on apex-minor-free graphs. This technique identifies and removes vertices that do not contribute to the minor structure, simplifying the graph without affecting the minor relationship.
+\item Application of Recursive Understanding: Leveraging recent advancements in almost-linear time flow/cut algorithms, the recursive understanding technique effectively reduces complex graphs to apex-minor-free graphs. This reduction simplifies the problem, making it more tractable for the minor containment test.
+\end{itemize}
+
+\subsection{Conclusion}
+These innovations collectively enable the algorithm to perform minor containment and solve the Disjoint Paths problem with better efficiency. In the paper the authors provide detailed proofs for theoretical advancements and complexity analyses, ensuring the robustness of their approach.
+
+The authors also believe that the key new insights of the paper - namely an the almost-linear time implementation of recursive understanding and the almost-linear time implementation of the irrelevant vertex rule on apex-minor-free graphs with the dynamic treewidth data structure  could find applicability much more broadly in the context of fixed-parameter algorithms and computational problems in the theory of graph minors.
+
+
+
