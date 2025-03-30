@@ -308,3 +308,5 @@ TSWLatexianTemp*
 
 .vscode
 .DS_Store
+# don't track main - this can cause conflicts
+main.pdf
