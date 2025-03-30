@@ -1,3 +1,0 @@
-# This file is used internally by FFMPEG.
-file 'file:/Users/vanja/Documents/Faculty/Magisterij/Fakulteta za Racunalnistvo in Informatiko/Algorithms/seminar-1-algorithms/presentation/media/videos/presentation/1080p60/partial_movie_files/FOCS/514650861_4048469437_223132457.mp4'
-file 'file:/Users/vanja/Documents/Faculty/Magisterij/Fakulteta za Racunalnistvo in Informatiko/Algorithms/seminar-1-algorithms/presentation/media/videos/presentation/1080p60/partial_movie_files/FOCS/578889471_1930286805_348660934.mp4'
