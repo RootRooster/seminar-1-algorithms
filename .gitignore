@@ -314,3 +314,6 @@ TSWLatexianTemp*
 presentation/media
 presentation/slides
 presentation/FOCS_assets
+
+# don't track main - this can cause conflicts
+main.pdf
